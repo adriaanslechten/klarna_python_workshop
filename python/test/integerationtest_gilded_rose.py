@@ -90,7 +90,6 @@ class GildedRoseTest(unittest.TestCase):
             Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=-15, quality=0),
             Item(name="Conjured Mana Cake", sell_in=-17, quality=0),
         ]
-        print(actual)
         self.assertCountEqual(actual,expected)
 
 if __name__ == '__main__':
