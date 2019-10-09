@@ -33,11 +33,12 @@ class GildedRose(object):
             if item.name == "Sulfuras, Hand of Ragnaros":
                 pass
             else:
-                if item.name == "Aged Brie" or item.name == "Backstage passes to a TAFKAL80ETC concert":
+                if item.name == "Aged Brie":
                         item.quality = self.increase_quality(item)
-                        if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                            if item.sell_in < 11:
-                                    item.quality = self.increase_quality(item)
+                elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+                    item.quality = self.increase_quality(item)
+                    if item.sell_in < 11:
+                        item.quality = self.increase_quality(item)
                 else:
                     item.quality = self.decrease_quality(item)
                 item.sell_in = item.sell_in - 1
@@ -45,7 +46,6 @@ class GildedRose(object):
                 if item.sell_in < 0:
                     if item.name == "Aged Brie":
                         item.quality = self.increase_quality(item)
-
                     else:
                         if item.name != "Backstage passes to a TAFKAL80ETC concert":
                             item.quality = self.decrease_quality(item)
