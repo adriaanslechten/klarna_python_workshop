@@ -28,13 +28,25 @@ class GildedRose(object):
         else:
             return item.quality
 
-    def update_backstage(self,item):
-        if item.sell_in < 0:
-            return item.quality - item.quality
-        elif item.sell_in < 11:
-            return  self.increase_quality(item)
+    def update_backstage(self, backstage_ticket):
+        """
+        Helper funciton to update the backstage tickets their quality.
+        :param backstage_ticket: item.
+        :return: updated quality
+        """
+        if backstage_ticket.sell_in < 0:
+            return backstage_ticket.quality - backstage_ticket.quality
+        elif backstage_ticket.sell_in < 11:
+            return  self.increase_quality(backstage_ticket)
         else:
-            return item.quality
+            return backstage_ticket.quality
+
+    def update_aged_brie(self,item):
+        item.quality = self.increase_quality(item)
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            item.quality = self.increase_quality(item)
+        return item
 
     def update_quality(self):
         for item in self.items:
@@ -42,23 +54,22 @@ class GildedRose(object):
                 pass
             else:
                 if item.name == "Aged Brie":
-                        item.quality = self.increase_quality(item)
-                elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                    item.quality = self.increase_quality(item)
-                    item.quality = self.update_backstage(item)
+                    self.update_aged_brie(item)
+
                 else:
-                    item.quality = self.decrease_quality(item)
-
-                item.sell_in = item.sell_in - 1
-
-                if item.sell_in < 0:
-                    if item.name == "Aged Brie":
+                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
                         item.quality = self.increase_quality(item)
+                        item.quality = self.update_backstage(item)
                     else:
-                        if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                            self.update_backstage(item)
-                        else:
-                            item.quality = self.decrease_quality(item)
+                        item.quality = self.decrease_quality(item)
+
+                    item.sell_in = item.sell_in - 1
+
+                    if item.sell_in < 0:
+                            if item.name == "Backstage passes to a TAFKAL80ETC concert":
+                                self.update_backstage(item)
+                            else:
+                                item.quality = self.decrease_quality(item)
 
 
 class Item:
