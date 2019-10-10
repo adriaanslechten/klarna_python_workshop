@@ -1,5 +1,5 @@
 
-class AgedBrie(object):
+class RegularItem(object):
 
     def decrease_quality(self, item):
         """
@@ -35,15 +35,15 @@ class AgedBrie(object):
         else:
             return False
 
-    def update_aged_brie(self, aged_brie):
+    def update(self, item):
         """
-        Helper function to update the aged brie.
-        :param aged_brie: input item. (aged brie)
-        :return: updated aged brie.
+        Helper function to update the other items
+        :param item: input item.
+        :return: updated item.
         """
-        aged_brie.quality = self.increase_quality(aged_brie)
-        aged_brie.sell_in = aged_brie.sell_in - 1
-        if aged_brie.sell_in < 0:
-            aged_brie.quality = self.increase_quality(aged_brie)
-        return aged_brie
+        item.quality = self.decrease_quality(item)
+        item.sell_in = item.sell_in - 1
+        if self.item_has_expired(item):
+            item.quality = self.decrease_quality(item)
+        return item
 

@@ -1,39 +1,7 @@
+from src.items.regular_item import RegularItem
 
-class BackstageTicket(object):
+class BackstageTicket(RegularItem):
 
-    def decrease_quality(self, item):
-        """
-        Helper function to increase the quality.
-        :param item: item which we want tod descrease
-        :return: integer, containing the quality minus one
-        """
-        if item.quality > 0:
-            return item.quality - 1
-        else:
-            return item.quality
-
-    def increase_quality(self, item):
-        """
-        Helper function to increase the quality.
-        :param item: item which we want to increase
-        :return: integer, containing the quality plus one
-        """
-        if item.quality < 50:
-            return item.quality + 1
-        else:
-            return item.quality
-
-
-    def item_has_expired(self,item):
-        """
-        Helper funciton to check if the item is expired
-        :param item: item to check
-        :return: boolean, if it's expired or not.
-        """
-        if item.sell_in < 0:
-            return True
-        else:
-            return False
 
     def update_backstageticket_quality(self, backstage_ticket):
         """

@@ -1,6 +1,6 @@
 import unittest
 
-from src.regular_item import RegularItem
+from items.regular_item import RegularItem
 from src.item import Item
 
 class RegularItemUnitTest(unittest.TestCase):
@@ -33,7 +33,7 @@ class RegularItemUnitTest(unittest.TestCase):
 
         def run_regular_item(item):
             regular_item = RegularItem()
-            return regular_item.update_regular_item(item)
+            return regular_item.update(item)
 
         #Run
         item1 = Item(name="+5 Dexterity Vest", sell_in=10, quality=20)

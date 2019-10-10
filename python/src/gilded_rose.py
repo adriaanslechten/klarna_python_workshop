@@ -1,6 +1,6 @@
-from age_brie import  AgedBrie
-from backstage_ticket import BackstageTicket
-from regular_item import RegularItem
+from src.items.age_brie import  AgedBrie
+from src.items.backstage_ticket import BackstageTicket
+from src.items.regular_item import RegularItem
 
 class GildedRose(object):
 
@@ -24,7 +24,7 @@ class GildedRose(object):
             return backstage_ticket.update_backstage_ticket(item)
         else:
             regular_item = RegularItem()
-            return regular_item.update_regular_item(item)
+            return regular_item.update(item)
 
     def update_quality(self):
         """

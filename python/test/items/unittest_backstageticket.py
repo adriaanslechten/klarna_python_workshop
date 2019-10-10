@@ -1,6 +1,6 @@
 import unittest
 
-from src.backstage_ticket import BackstageTicket
+from items.backstage_ticket import BackstageTicket
 from src.item import Item
 
 class BackstageTicketUnitTest(unittest.TestCase):
