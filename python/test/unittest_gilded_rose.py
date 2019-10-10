@@ -51,9 +51,10 @@ class GildedRoseUnitTest(unittest.TestCase):
             backstage_ticket = Item("Backstage passes to a TAFKAL80ETC concert", sellin, quantity)
             items  = [backstage_ticket]
             gilded_rose = GildedRose(items)
-            return gilded_rose.update_backstage(backstage_ticket)
+            return gilded_rose.update_backstageticket_quality(backstage_ticket)
 
         actual = run_backstage_test(10,10)
+        print(actual)
         assert(actual == 11)
         actual = run_backstage_test(-1,20)
         assert(actual == 0)
