@@ -1,7 +1,8 @@
-from src.items.aged_brie import  AgedBrie
-from src.items.backstage_ticket import BackstageTicket
-from src.items.regular_item import RegularItem
+from src.item_factory import ItemFactory
 
+"""
+Main run function.
+"""
 class GildedRose(object):
 
     def __init__(self, items):
@@ -14,17 +15,12 @@ class GildedRose(object):
         :param item: item which we should update.
         :return: updated item.
         """
+        itemfactory = ItemFactory()
         if item.name == "Sulfuras, Hand of Ragnaros":
             pass
-        elif item.name == "Aged Brie":
-            aged_brie = AgedBrie()
-            return aged_brie.update(item)
-        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-            backstage_ticket = BackstageTicket()
-            return backstage_ticket.update(item)
         else:
-            regular_item = RegularItem()
-            return regular_item.update(item)
+            type_item = itemfactory.createItemType(item)
+            return type_item.update(item)
 
     def update_quality(self):
         """
