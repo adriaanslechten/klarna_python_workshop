@@ -9,7 +9,7 @@ class BackstageTicketUnitTest(unittest.TestCase):
         def update_quality_wrapper(sellin, quantity):
             backstage_item = Item("Backstage passes to a TAFKAL80ETC concert", sellin, quantity)
             backstage_ticket = BackstageTicket()
-            updated_ticket = backstage_ticket.update_backstageticket_quality(backstage_item)
+            updated_ticket = backstage_ticket._update_backstageticket_quality(backstage_item)
             return updated_ticket
 
         actual = update_quality_wrapper(10,10)

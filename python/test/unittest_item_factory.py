@@ -10,13 +10,13 @@ class ItemFactoryUnitTest(unittest.TestCase):
     def test_create_regular_item(self):
         item = Item(name="+5 Dexterity Vest", sell_in=10, quality=20)
         item_factory = ItemFactory()
-        outcome = item_factory.createItemType(item)
+        outcome = item_factory.create_item_type(item)
         assert(isinstance(outcome,RegularItem))
 
     def test_create_regular_item(self):
         item = Item(name="Aged Brie", sell_in=2, quality=0)
         item_factory = ItemFactory()
-        outcome = item_factory.createItemType(item)
+        outcome = item_factory.create_item_type(item)
         assert(isinstance(outcome,AgedBrie))
 
 

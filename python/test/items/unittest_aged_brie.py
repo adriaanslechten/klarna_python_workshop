@@ -1,6 +1,6 @@
 import unittest
 
-from src.gilded_rose import AgedBrie
+from src.items.aged_brie import AgedBrie
 from src.item import Item
 
 class AgedBrieUnitTest(unittest.TestCase):

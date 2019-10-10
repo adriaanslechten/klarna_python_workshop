@@ -8,25 +8,25 @@ class RegularItemUnitTest(unittest.TestCase):
     def test_increase_quality(self):
         item = Item(name="+5 Dexterity Vest", sell_in=10, quality=20)
         regular_item = RegularItem()
-        actual  = regular_item.increase_quality(item)
+        actual  = regular_item._increase_quality(item)
         assert(actual == 21)
 
     def test_decrease_quality(self):
         item = Item(name="+5 Dexterity Vest", sell_in=10, quality=20)
         regular_item = RegularItem()
-        actual  = regular_item.decrease_quality(item)
+        actual  = regular_item._decrease_quality(item)
         assert(actual == 19)
 
     def test_decrease_quality_leq_0(self):
         item = Item(name="+5 Dexterity Vest", sell_in=10, quality=0)
         regular_item = RegularItem()
-        actual  = regular_item.decrease_quality(item)
+        actual  = regular_item._decrease_quality(item)
         assert(actual == 0)
 
     def test_decrease_quality_geq_50(self):
         item = Item(name="+5 Dexterity Vest", sell_in=10, quality=50)
         regular_item = RegularItem()
-        actual  = regular_item.increase_quality(item)
+        actual  = regular_item._increase_quality(item)
         assert(actual == 50)
 
     def test_run_regular_item(self):

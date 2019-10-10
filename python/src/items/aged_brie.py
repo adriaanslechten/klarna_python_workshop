@@ -1,5 +1,5 @@
-
 from src.items.regular_item import RegularItem
+
 
 class AgedBrie(RegularItem):
 
@@ -9,9 +9,8 @@ class AgedBrie(RegularItem):
         :param aged_brie: input item. (aged brie)
         :return: updated aged brie.
         """
-        aged_brie.quality = self.increase_quality(aged_brie)
+        aged_brie.quality = self._increase_quality(aged_brie)
         aged_brie.sell_in = aged_brie.sell_in - 1
         if aged_brie.sell_in < 0:
-            aged_brie.quality = self.increase_quality(aged_brie)
+            aged_brie.quality = self._increase_quality(aged_brie)
         return aged_brie
-

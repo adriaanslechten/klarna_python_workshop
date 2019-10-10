@@ -9,7 +9,7 @@ class GildedRoseUnitTest(unittest.TestCase):
         item = Item(name="+5 Dexterity Vest", sell_in=10, quality=20)
         items = [item]
         gilded_rose = GildedRose(items)
-        actual  = gilded_rose.update_items(item)
+        actual  = gilded_rose._update_items(item)
         assert(actual.quality == 19)
         assert(actual.sell_in== 9)
 
@@ -22,6 +22,8 @@ class GildedRoseUnitTest(unittest.TestCase):
         actual = output_list[0]
         assert(actual.quality == 19)
         assert(actual.sell_in== 9)
+
+
 
 if __name__ == '__main__':
     unittest.main()

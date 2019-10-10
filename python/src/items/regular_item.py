@@ -1,8 +1,10 @@
 from src.items.parent_item import ParentItem
 
+
 class RegularItem(ParentItem):
 
-    def decrease_quality(self, item):
+    @staticmethod
+    def _decrease_quality(item):
         """
         Helper function to increase the quality.
         :param item: item which we want tod descrease
@@ -13,7 +15,8 @@ class RegularItem(ParentItem):
         else:
             return item.quality
 
-    def increase_quality(self, item):
+    @staticmethod
+    def _increase_quality(item):
         """
         Helper function to increase the quality.
         :param item: item which we want to increase
@@ -24,8 +27,8 @@ class RegularItem(ParentItem):
         else:
             return item.quality
 
-
-    def item_has_expired(self,item):
+    @staticmethod
+    def _item_has_expired(item):
         """
         Helper funciton to check if the item is expired
         :param item: item to check
@@ -42,9 +45,8 @@ class RegularItem(ParentItem):
         :param item: input item.
         :return: updated item.
         """
-        item.quality = self.decrease_quality(item)
+        item.quality = self._decrease_quality(item)
         item.sell_in = item.sell_in - 1
-        if self.item_has_expired(item):
-            item.quality = self.decrease_quality(item)
+        if self._item_has_expired(item):
+            item.quality = self._decrease_quality(item)
         return item
-
