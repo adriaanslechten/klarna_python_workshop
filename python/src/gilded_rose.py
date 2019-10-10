@@ -33,7 +33,7 @@ class GildedRose(object):
         :param backstage_ticket: item.
         :return: updated quality
         """
-        if backstage_ticket.sell_in < 0:
+        if self.item_has_expired(backstage_ticket):
             return 0
         elif backstage_ticket.sell_in < 11:
             return self.increase_quality(backstage_ticket)
@@ -62,7 +62,7 @@ class GildedRose(object):
         """
         aged_brie.quality = self.increase_quality(aged_brie)
         aged_brie.sell_in = aged_brie.sell_in - 1
-        if aged_brie.sell_in < 0:
+        if self.item_has_expired(aged_brie):
             aged_brie.quality = self.increase_quality(aged_brie)
         return aged_brie
 
@@ -74,7 +74,7 @@ class GildedRose(object):
         """
         item.quality = self.decrease_quality(item)
         item.sell_in = item.sell_in - 1
-        if item.sell_in < 0:
+        if self.item_has_expired(item):
             item.quality = self.decrease_quality(item)
         return item
 
@@ -92,6 +92,12 @@ class GildedRose(object):
             return self.update_backstage_ticket(item)
         else:
             return self.update_other_items(item)
+
+    def item_has_expired(self,item):
+        if item.sell_in < 0:
+            return True
+        else:
+            return False
 
     def update_quality(self):
         """
