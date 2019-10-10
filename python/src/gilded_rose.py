@@ -1,4 +1,4 @@
-from src.items.age_brie import  AgedBrie
+from src.items.aged_brie import  AgedBrie
 from src.items.backstage_ticket import BackstageTicket
 from src.items.regular_item import RegularItem
 
@@ -18,10 +18,10 @@ class GildedRose(object):
             pass
         elif item.name == "Aged Brie":
             aged_brie = AgedBrie()
-            return aged_brie.update_aged_brie(item)
+            return aged_brie.update(item)
         elif item.name == "Backstage passes to a TAFKAL80ETC concert":
             backstage_ticket = BackstageTicket()
-            return backstage_ticket.update_backstage_ticket(item)
+            return backstage_ticket.update(item)
         else:
             regular_item = RegularItem()
             return regular_item.update(item)

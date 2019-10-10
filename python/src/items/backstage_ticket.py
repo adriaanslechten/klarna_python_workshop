@@ -16,7 +16,7 @@ class BackstageTicket(RegularItem):
         else:
             return backstage_ticket.quality
 
-    def update_backstage_ticket(self, backstage_ticket):
+    def update(self, backstage_ticket):
         """
         Helper funciton to update the backstage ticket.
         :param backstage_ticket: input item (backstage ticket)
@@ -26,7 +26,8 @@ class BackstageTicket(RegularItem):
         backstage_ticket.quality = self.update_backstageticket_quality(backstage_ticket)
         backstage_ticket.sell_in = backstage_ticket.sell_in - 1
         if backstage_ticket.sell_in < 0:
-            return self.update_backstageticket_quality(backstage_ticket)
+            backstage_ticket.quality = self.update_backstageticket_quality(backstage_ticket)
+            return backstage_ticket
         else:
-            return backstage_ticket.quality
+            return backstage_ticket
 

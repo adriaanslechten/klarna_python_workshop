@@ -1,5 +1,6 @@
+from src.items.parent_item import ParentItem
 
-class RegularItem(object):
+class RegularItem(ParentItem):
 
     def decrease_quality(self, item):
         """

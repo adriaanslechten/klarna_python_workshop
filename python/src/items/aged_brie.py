@@ -3,7 +3,7 @@ from src.items.regular_item import RegularItem
 
 class AgedBrie(RegularItem):
 
-    def update_aged_brie(self, aged_brie):
+    def update(self, aged_brie):
         """
         Helper function to update the aged brie.
         :param aged_brie: input item. (aged brie)
