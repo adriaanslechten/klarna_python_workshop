@@ -24,3 +24,9 @@ class ItemFactory(object):
             return BackstageTicket()
         else:
             return RegularItem()
+#create new obj
+#throw errors if no match
+#create item which throws an error => mock
+#create default rurels
+#add logging
+#add spark submit method.

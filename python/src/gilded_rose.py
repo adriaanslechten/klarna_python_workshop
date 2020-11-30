@@ -33,3 +33,5 @@ class GildedRose(object):
         for item in self.items:
             self.item = self._update_items(item)
         return self.items
+
+
