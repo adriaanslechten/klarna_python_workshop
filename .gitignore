@@ -6,3 +6,8 @@ obj
 target
 *.*~
 *~
+*.pyc
+**.cache
+.coverage
+.idea/
+*.iml
