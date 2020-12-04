@@ -23,31 +23,58 @@ class GildedRose(object):
             return item.quality + 1
         return item.quality
 
+    def update_backstage(self, item):
+        """
+        Helper function to update the backstage item
+        :param item: containing the backstage pass
+        :return: integer, containing the backstage quality
+        """
+
+        item.quality = self.increase_quality(item)
+        if item.sell_in < 11:
+            item.quality = self.increase_quality(item)
+        if item.sell_in < 6:
+            item.quality = self.increase_quality(item)
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            item.quality = item.quality - item.quality
+        return item.quality
+
+    def update_aged_brie(self, item):
+        """
+        Helper function to update the aged_brie item
+        :param item: containing the aged_brie
+        :return: integer, containing the aged_brie quality
+        """
+        item.quality = self.increase_quality(item)
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            item.quality = self.increase_quality(item)
+        return item.quality
+
+    def update_other_items(self, item):
+        """
+        Helper function to update the other_items
+        :param item: containing the other_items
+        :return: integer, containing the other_items quality
+        """
+        item.quality = self.decrease_quality(item)
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            item.quality = self.decrease_quality(item)
+        return item.quality
+
     def update_quality(self):
         for item in self.items:
             if item.name == "Sulfuras, Hand of Ragnaros":
                 pass
-
             else:
                 if item.name == "Aged Brie":
-                    item.quality = self.increase_quality(item)
-                    item.sell_in = item.sell_in - 1
-                    if item.sell_in < 0:
-                        item.quality = self.increase_quality(item)
+                    item.quality = self.update_aged_brie(item)
                 elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                    item.quality = self.increase_quality(item)
-                    if item.sell_in < 11:
-                        item.quality = self.increase_quality(item)
-                    if item.sell_in < 6:
-                        item.quality = self.increase_quality(item)
-                    item.sell_in = item.sell_in - 1
-                    if item.sell_in < 0:
-                        item.quality = item.quality - item.quality
+                    item.quality = self.update_backstage(item)
                 else:
-                    item.quality = self.decrease_quality(item)
-                    item.sell_in = item.sell_in - 1
-                    if item.sell_in < 0:
-                        item.quality = self.decrease_quality(item)
+                    item.quality = self.update_other_items(item)
 
 
 class Item:
