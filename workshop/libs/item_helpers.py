@@ -1,3 +1,6 @@
+"""Helper functions for items"""
+
+
 def decrease_quality(item):
     """
     Helper function to increase the quality.
@@ -35,4 +38,4 @@ def item_has_expired(item):
     :param item: item which we want to check if it's expired
     :return: bool
     """
-    return True if item.sell_in < 0 else False
+    return item.sell_in < 0

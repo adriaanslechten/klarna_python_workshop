@@ -4,6 +4,7 @@ Class containing the item. THis is used inside of the Gilded Rose code kata.
 
 
 class Item:
+    """Class for item"""
     def __init__(self, name, sell_in, quality):
         """
         Init method.

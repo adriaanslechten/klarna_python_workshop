@@ -17,9 +17,13 @@ help:
 test: ## Lint and unit test python code
 	@$(PRE_ACTIVATE) $(MAKE) -j4 --no-print-directory \
 	  test-unit \
+	  test-pylint \
 
-test-unit:
+test-unit: ## Run unit-tests and pylint 
 	@mkdir -p var
 	pytest test  \
 
-.PHONY: help test test-unit
+test-pylint:
+	pylint -f parseable --rcfile=setup.cfg -j 4 --ignore-patterns=".*test_.*.py" workshop
+
+.PHONY: help test test-unit test-pylint

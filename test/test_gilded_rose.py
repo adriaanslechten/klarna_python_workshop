@@ -1,5 +1,6 @@
 import pytest
-from workshop.gilded_rose import AgedBrie, Backstage, GildedRose, Item
+from workshop.gilded_rose import AgedBrie, Backstage, GildedRose
+from workshop.items.items import Item
 from workshop.libs.item_helpers import (
     decrease_quality,
     decrease_sell_in,
@@ -32,7 +33,4 @@ def test_update_backstage(sell_in, quality, result):
         "Backstage passes to a TAFKAL80ETC concert", sell_in, quality
     )
 
-    assert (
-        Backstage().update_backstage(backstage_ticket)
-        == result
-    )
+    assert Backstage().update_backstage(backstage_ticket) == result

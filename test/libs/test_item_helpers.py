@@ -1,5 +1,6 @@
 import pytest
-from workshop.gilded_rose import GildedRose, Item
+from workshop.gilded_rose import GildedRose
+from workshop.items.items import Item
 from workshop.libs.item_helpers import (
     decrease_quality,
     decrease_sell_in,

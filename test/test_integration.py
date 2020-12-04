@@ -1,5 +1,6 @@
-from workshop.gilded_rose import GildedRose, Item
 import pytest
+from workshop.gilded_rose import GildedRose
+from workshop.items.items import Item
 
 
 @pytest.fixture()

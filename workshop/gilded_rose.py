@@ -1,15 +1,11 @@
-# -*- coding: utf-8 -*-
-
-from workshop.items.items import Item
-from workshop.libs.item_helpers import (
-    decrease_quality,
-    decrease_sell_in,
-    increase_quality,
-    item_has_expired,
-)
+"""Models for items"""
+from workshop.libs.item_helpers import (decrease_quality, decrease_sell_in,
+                                        increase_quality, item_has_expired)
 
 
-class Backstage(object):
+class Backstage():
+    """Model for Backstage items"""
+
     @staticmethod
     def update_backstage(item):
         """
@@ -29,7 +25,9 @@ class Backstage(object):
         return item.quality
 
 
-class AgedBrie(object):
+class AgedBrie():
+    """Model for Aged bries items"""
+
     @staticmethod
     def update_aged_brie(item):
         """
@@ -44,7 +42,9 @@ class AgedBrie(object):
         return item.quality
 
 
-class RegularItems(object):
+class RegularItems():
+    """Model for regular items"""
+
     @staticmethod
     def update_regular_items(item):
         """
@@ -59,23 +59,24 @@ class RegularItems(object):
         return item.quality
 
 
-class GildedRose(object):
+class GildedRose():
+    """Class for Gilded rose"""
     def __init__(self, items):
         self.items = items
-
-    def update_item_quality(self, item):
-        """Function to update an individual item's quality."""
-        if item.name == "Sulfuras, Hand of Ragnaros":
-            pass
-        elif item.name == "Aged Brie":
-            return AgedBrie().update_aged_brie(item)
-        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-            return Backstage().update_backstage(item)
-        else:
-            return RegularItems().update_regular_items(item)
+        self.item = None
 
     def update_quality(self):
         """Outer loop for update quality of all the items."""
         for item in self.items:
-            self.item = self.update_item_quality(item)
+            self.item = update_item_quality(item)
         return self.items
+
+def update_item_quality(item):
+    """Function to update an individual item's quality."""
+    if item.name == "Sulfuras, Hand of Ragnaros":
+        return None
+    if item.name == "Aged Brie":
+        return AgedBrie().update_aged_brie(item)
+    if item.name == "Backstage passes to a TAFKAL80ETC concert":
+        return Backstage().update_backstage(item)
+    return RegularItems().update_regular_items(item)
