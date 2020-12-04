@@ -19,7 +19,9 @@ class GildedRose(object):
         :param item: item which we want to increase
         :return: integer, containing the quality plus one
         """
-        return item.quality + 1
+        if item.quality < 50:
+            return item.quality + 1
+        return item.quality
 
     def update_quality(self):
         for item in self.items:
@@ -30,15 +32,12 @@ class GildedRose(object):
                 if item.name != "Sulfuras, Hand of Ragnaros":
                     item.quality = self.decrease_quality(item)
             else:
-                if item.quality < 50:
-                    item.quality = self.increase_quality(item)
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = self.increase_quality(item)
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = self.increase_quality(item)
+                item.quality = self.increase_quality(item)
+                if item.name == "Backstage passes to a TAFKAL80ETC concert":
+                    if item.sell_in < 11:
+                        item.quality = self.increase_quality(item)
+                    if item.sell_in < 6:
+                        item.quality = self.increase_quality(item)
             if item.name != "Sulfuras, Hand of Ragnaros":
                 item.sell_in = item.sell_in - 1
             if item.sell_in < 0:
@@ -49,8 +48,7 @@ class GildedRose(object):
                     else:
                         item.quality = item.quality - item.quality
                 else:
-                    if item.quality < 50:
-                        item.quality = self.increase_quality(item)
+                    item.quality = self.increase_quality(item)
 
 
 class Item:

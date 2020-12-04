@@ -16,6 +16,14 @@ def test_increase_quality():
     assert actual == 21
 
 
+def test_increase_quality_max():
+    item = Item(name="+5 Dexterity Vest", sell_in=10, quality=50)
+    items = [item]
+    gilded_rose = GildedRose(items)
+    actual = gilded_rose.increase_quality(item)
+    assert actual == 50
+
+
 def test_decrease_quality():
     item = Item(name="+5 Dexterity Vest", sell_in=10, quality=20)
     items = [item]
