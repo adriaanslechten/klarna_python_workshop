@@ -8,25 +8,34 @@ from workshop.libs.item_helpers import (
 )
 
 
-def test_decrease_quality():
-    item = Item(name="+5 Dexterity Vest", sell_in=10, quality=20)
-    items = [item]
-    gilded_rose = GildedRose(items)
-    actual = decrease_quality(item)
-    assert actual == 19
+@pytest.mark.parametrize(
+    "item, result",
+    [
+        (Item(name="+5 Dexterity Vest", sell_in=10, quality=20), 19),
+        (Item(name="+5 Dexterity Vest", sell_in=10, quality=0), 0),
+    ],
+)
+def test_decrease_quality(item, result):
+    assert decrease_quality(item) == result
 
 
-def test_increase_quality_max():
-    item = Item(name="+5 Dexterity Vest", sell_in=10, quality=50)
-    items = [item]
-    gilded_rose = GildedRose(items)
-    actual = increase_quality(item)
-    assert actual == 50
+@pytest.mark.parametrize(
+    "item, result",
+    [
+        (Item(name="+5 Dexterity Vest", sell_in=10, quality=49), 50),
+        (Item(name="+5 Dexterity Vest", sell_in=10, quality=50), 50),
+    ],
+)
+def test_increase_quality_max(item, result):
+    assert increase_quality(item) == result
 
 
-def test_decrease_quality_zero_condition():
-    item = Item(name="+5 Dexterity Vest", sell_in=10, quality=0)
-    items = [item]
-    gilded_rose = GildedRose(items)
-    actual = decrease_quality(item)
-    assert actual == 0
+@pytest.mark.parametrize(
+    "item, result",
+    [
+        (Item(name="+5 Dexterity Vest", sell_in=-10, quality=50), True),
+        (Item(name="+5 Dexterity Vest", sell_in=10, quality=50), False),
+    ],
+)
+def test_item_has_expired(item, result):
+    assert item_has_expired(item) == result
