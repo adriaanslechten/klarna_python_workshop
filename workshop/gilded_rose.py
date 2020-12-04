@@ -23,6 +23,22 @@ class GildedRose(object):
             return item.quality + 1
         return item.quality
 
+    def decrease_sell_in(self, sell_in):
+        """
+        Helper function to decrease the sell_in
+        :param sell_in: sell_in param.
+        :return: integer, containing the sell_in minus one.
+        """
+        return sell_in - 1
+
+    def item_has_expired(self, item):
+        """
+        Helper function to check if an item is expired
+        :param item: item which we want to check if it's expired
+        :return: bool
+        """
+        return True if item.sell_in < 0 else False
+
     def update_backstage(self, item):
         """
         Helper function to update the backstage item
@@ -35,8 +51,8 @@ class GildedRose(object):
             item.quality = self.increase_quality(item)
         if item.sell_in < 6:
             item.quality = self.increase_quality(item)
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0:
+        item.sell_in = self.decrease_sell_in(item.sell_in)
+        if self.item_has_expired(item):
             item.quality = item.quality - item.quality
         return item.quality
 
@@ -47,8 +63,8 @@ class GildedRose(object):
         :return: integer, containing the aged_brie quality
         """
         item.quality = self.increase_quality(item)
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0:
+        item.sell_in = self.decrease_sell_in(item.sell_in)
+        if self.item_has_expired(item):
             item.quality = self.increase_quality(item)
         return item.quality
 
@@ -59,22 +75,27 @@ class GildedRose(object):
         :return: integer, containing the other_items quality
         """
         item.quality = self.decrease_quality(item)
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0:
+        item.sell_in = self.decrease_sell_in(item.sell_in)
+        if self.item_has_expired(item):
             item.quality = self.decrease_quality(item)
         return item.quality
 
+    def update_item_quality(self, item):
+        """Function to update an individual item's quality."""
+        if item.name == "Sulfuras, Hand of Ragnaros":
+            pass
+        elif item.name == "Aged Brie":
+            return self.update_aged_brie(item)
+        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+            return self.update_backstage(item)
+        else:
+            return self.update_other_items(item)
+
     def update_quality(self):
+        """Outer loop for update quality of all the items."""
         for item in self.items:
-            if item.name == "Sulfuras, Hand of Ragnaros":
-                pass
-            else:
-                if item.name == "Aged Brie":
-                    item.quality = self.update_aged_brie(item)
-                elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                    item.quality = self.update_backstage(item)
-                else:
-                    item.quality = self.update_other_items(item)
+            self.item = self.update_item_quality(item)
+        return self.items
 
 
 class Item:
