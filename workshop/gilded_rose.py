@@ -9,7 +9,9 @@ class GildedRose(object):
         :param item: item which we want tod descrease
         :return: integer, containing the quality minus one
         """
-        return item.quality - 1
+        if item.quality > 0:
+            return item.quality - 1
+        return item.quality
 
     def increase_quality(self, item):
         """
@@ -26,8 +28,7 @@ class GildedRose(object):
                 and item.name != "Backstage passes to a TAFKAL80ETC concert"
             ):
                 if item.name != "Sulfuras, Hand of Ragnaros":
-                    if item.quality > 0:
-                        item.quality = self.decrease_quality(item)
+                    item.quality = self.decrease_quality(item)
             else:
                 if item.quality < 50:
                     item.quality = self.increase_quality(item)
@@ -44,8 +45,7 @@ class GildedRose(object):
                 if item.name != "Aged Brie":
                     if item.name != "Backstage passes to a TAFKAL80ETC concert":
                         if item.name != "Sulfuras, Hand of Ragnaros":
-                            if item.quality > 0:
-                                item.quality = self.decrease_quality(item)
+                            item.quality = self.decrease_quality(item)
                     else:
                         item.quality = item.quality - item.quality
                 else:

@@ -22,3 +22,11 @@ def test_decrease_quality():
     gilded_rose = GildedRose(items)
     actual = gilded_rose.decrease_quality(item)
     assert actual == 19
+
+
+def test_decrease_quality_zero_condition():
+    item = Item(name="+5 Dexterity Vest", sell_in=10, quality=0)
+    items = [item]
+    gilded_rose = GildedRose(items)
+    actual = gilded_rose.decrease_quality(item)
+    assert actual == 0
