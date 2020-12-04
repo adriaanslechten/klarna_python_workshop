@@ -1,5 +1,5 @@
 import pytest
-from workshop.gilded_rose import GildedRose, Item
+from workshop.gilded_rose import AgedBrie, Backstage, GildedRose, Item
 from workshop.libs.item_helpers import (
     decrease_quality,
     decrease_sell_in,
@@ -17,8 +17,7 @@ from workshop.libs.item_helpers import (
 )
 def test_update_aged_brie(sell_in, quality, result):
     aged_brie = Item("Aged Brie", sell_in, quality)
-    gilded_rose = GildedRose([aged_brie])
-    assert gilded_rose.update_aged_brie(aged_brie) == result
+    assert AgedBrie().update_aged_brie(aged_brie) == result
 
 
 @pytest.mark.parametrize(
@@ -32,5 +31,8 @@ def test_update_backstage(sell_in, quality, result):
     backstage_ticket = Item(
         "Backstage passes to a TAFKAL80ETC concert", sell_in, quality
     )
-    gilded_rose = GildedRose([backstage_ticket])
-    assert gilded_rose.update_backstage(backstage_ticket) == result
+
+    assert (
+        Backstage().update_backstage(backstage_ticket)
+        == result
+    )

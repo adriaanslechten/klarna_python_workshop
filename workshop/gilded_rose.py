@@ -9,11 +9,9 @@ from workshop.libs.item_helpers import (
 )
 
 
-class GildedRose(object):
-    def __init__(self, items):
-        self.items = items
-
-    def update_backstage(self, item):
+class Backstage(object):
+    @staticmethod
+    def update_backstage(item):
         """
         Helper function to update the backstage item
         :param item: containing the backstage pass
@@ -30,7 +28,10 @@ class GildedRose(object):
             item.quality = item.quality - item.quality
         return item.quality
 
-    def update_aged_brie(self, item):
+
+class AgedBrie(object):
+    @staticmethod
+    def update_aged_brie(item):
         """
         Helper function to update the aged_brie item
         :param item: containing the aged_brie
@@ -42,7 +43,10 @@ class GildedRose(object):
             item.quality = increase_quality(item)
         return item.quality
 
-    def update_other_items(self, item):
+
+class RegularItems(object):
+    @staticmethod
+    def update_regular_items(item):
         """
         Helper function to update the other_items
         :param item: containing the other_items
@@ -54,16 +58,21 @@ class GildedRose(object):
             item.quality = decrease_quality(item)
         return item.quality
 
+
+class GildedRose(object):
+    def __init__(self, items):
+        self.items = items
+
     def update_item_quality(self, item):
         """Function to update an individual item's quality."""
         if item.name == "Sulfuras, Hand of Ragnaros":
             pass
         elif item.name == "Aged Brie":
-            return self.update_aged_brie(item)
+            return AgedBrie().update_aged_brie(item)
         elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-            return self.update_backstage(item)
+            return Backstage().update_backstage(item)
         else:
-            return self.update_other_items(item)
+            return RegularItems().update_regular_items(item)
 
     def update_quality(self):
         """Outer loop for update quality of all the items."""
