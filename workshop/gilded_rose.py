@@ -1,43 +1,16 @@
 # -*- coding: utf-8 -*-
+
+from workshop.libs.item_helpers import (
+    decrease_quality,
+    decrease_sell_in,
+    increase_quality,
+    item_has_expired,
+)
+
+
 class GildedRose(object):
     def __init__(self, items):
         self.items = items
-
-    def decrease_quality(self, item):
-        """
-        Helper function to increase the quality.
-        :param item: item which we want tod descrease
-        :return: integer, containing the quality minus one
-        """
-        if item.quality > 0:
-            return item.quality - 1
-        return item.quality
-
-    def increase_quality(self, item):
-        """
-        Helper function to increase the quality.
-        :param item: item which we want to increase
-        :return: integer, containing the quality plus one
-        """
-        if item.quality < 50:
-            return item.quality + 1
-        return item.quality
-
-    def decrease_sell_in(self, sell_in):
-        """
-        Helper function to decrease the sell_in
-        :param sell_in: sell_in param.
-        :return: integer, containing the sell_in minus one.
-        """
-        return sell_in - 1
-
-    def item_has_expired(self, item):
-        """
-        Helper function to check if an item is expired
-        :param item: item which we want to check if it's expired
-        :return: bool
-        """
-        return True if item.sell_in < 0 else False
 
     def update_backstage(self, item):
         """
@@ -46,13 +19,13 @@ class GildedRose(object):
         :return: integer, containing the backstage quality
         """
 
-        item.quality = self.increase_quality(item)
+        item.quality = increase_quality(item)
         if item.sell_in < 11:
-            item.quality = self.increase_quality(item)
+            item.quality = increase_quality(item)
         if item.sell_in < 6:
-            item.quality = self.increase_quality(item)
-        item.sell_in = self.decrease_sell_in(item.sell_in)
-        if self.item_has_expired(item):
+            item.quality = increase_quality(item)
+        item.sell_in = decrease_sell_in(item.sell_in)
+        if item_has_expired(item):
             item.quality = item.quality - item.quality
         return item.quality
 
@@ -62,10 +35,10 @@ class GildedRose(object):
         :param item: containing the aged_brie
         :return: integer, containing the aged_brie quality
         """
-        item.quality = self.increase_quality(item)
-        item.sell_in = self.decrease_sell_in(item.sell_in)
-        if self.item_has_expired(item):
-            item.quality = self.increase_quality(item)
+        item.quality = increase_quality(item)
+        item.sell_in = decrease_sell_in(item.sell_in)
+        if item_has_expired(item):
+            item.quality = increase_quality(item)
         return item.quality
 
     def update_other_items(self, item):
@@ -74,10 +47,10 @@ class GildedRose(object):
         :param item: containing the other_items
         :return: integer, containing the other_items quality
         """
-        item.quality = self.decrease_quality(item)
-        item.sell_in = self.decrease_sell_in(item.sell_in)
-        if self.item_has_expired(item):
-            item.quality = self.decrease_quality(item)
+        item.quality = decrease_quality(item)
+        item.sell_in = decrease_sell_in(item.sell_in)
+        if item_has_expired(item):
+            item.quality = decrease_quality(item)
         return item.quality
 
     def update_item_quality(self, item):
