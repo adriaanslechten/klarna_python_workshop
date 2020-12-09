@@ -3,8 +3,12 @@ from dataclasses import dataclass
 from typing import List, Optional
 
 from workshop.items.items import Item
-from workshop.libs.item_helpers import (decrease_quality, decrease_sell_in,
-                                        increase_quality, item_has_expired)
+from workshop.libs.item_helpers import (
+    decrease_quality,
+    decrease_sell_in,
+    increase_quality,
+    item_has_expired
+)
 
 
 @dataclass(frozen=True)

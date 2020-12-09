@@ -19,6 +19,7 @@ test: ## Lint and unit test python code
 	  test-unit \
 	  test-pylint \
 	  test-mypy \
+	  test-isort \
 
 test-unit: ## Run unit-tests and pylint 
 	@mkdir -p var
@@ -30,8 +31,15 @@ test-pylint: ## Run pylint
 test-mypy: ## Run mypy
 	mypy $(PY_MODULE)
 
+test-isort: ## Test order of of imports
+	isort -l80 -m3 -tc -rc -c $(PY_MODULE)
+
+#----------- Pip --------------------------------------------------------------
 install-deps: ## Install dependencies via pipenv
 	pipenv install --dev
 	pipenv run pip install -e .
+
+isort: ## Sort imports in the python module
+	isort -l80 -m3 $(PY_MODULE)	
 
 .PHONY: help test test-unit test-pylint
