@@ -1,12 +1,8 @@
 import pytest
 from workshop.gilded_rose import AgedBrie, Backstage, GildedRose
 from workshop.items.items import Item
-from workshop.libs.item_helpers import (
-    decrease_quality,
-    decrease_sell_in,
-    increase_quality,
-    item_has_expired,
-)
+from workshop.libs.item_helpers import (decrease_quality, decrease_sell_in,
+                                        increase_quality, item_has_expired)
 
 
 @pytest.mark.parametrize(
@@ -34,3 +30,10 @@ def test_update_backstage(sell_in, quality, result):
     )
 
     assert Backstage().update_backstage(backstage_ticket) == result
+
+def test_gildedrose():
+    items_a = [Item("Aged Brie", 10, 10), Item("Even more Aged Brie", 5, 5)]
+    items_b = [Item("Aged Brie", 10, 10), Item("Even more Aged Brie", 5, 5)]
+    items_c = [Item("Ragnaros", 2, 2), Item("Backstage", 4, 4)]
+    assert items_a == items_b
+    assert items_a != items_c
