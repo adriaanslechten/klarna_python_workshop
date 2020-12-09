@@ -1,7 +1,9 @@
 """Helper functions for items"""
 
+from workshop.items.items import Item
 
-def decrease_quality(item):
+
+def decrease_quality(item: Item) -> int:
     """
     Helper function to increase the quality.
     :param item: item which we want tod descrease
@@ -12,7 +14,7 @@ def decrease_quality(item):
     return item.quality
 
 
-def increase_quality(item):
+def increase_quality(item: Item) -> int:
     """
     Helper function to increase the quality.
     :param item: item which we want to increase
@@ -23,7 +25,7 @@ def increase_quality(item):
     return item.quality
 
 
-def decrease_sell_in(sell_in):
+def decrease_sell_in(sell_in: int) -> int:
     """
     Helper function to decrease the sell_in
     :param sell_in: sell_in param.
@@ -32,7 +34,7 @@ def decrease_sell_in(sell_in):
     return sell_in - 1
 
 
-def item_has_expired(item):
+def item_has_expired(item: Item) -> bool:
     """
     Helper function to check if an item is expired
     :param item: item which we want to check if it's expired

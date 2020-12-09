@@ -18,13 +18,17 @@ test: ## Lint and unit test python code
 	@$(PRE_ACTIVATE) $(MAKE) -j4 --no-print-directory \
 	  test-unit \
 	  test-pylint \
+	  test-mypy \
 
 test-unit: ## Run unit-tests and pylint 
 	@mkdir -p var
 	pytest test  \
 
-test-pylint:
+test-pylint: ## Run pylint
 	pylint -f parseable --rcfile=setup.cfg -j 4 --ignore-patterns=".*test_.*.py" workshop
+
+test-mypy: ## Run mypy
+	mypy $(PY_MODULE)
 
 install-deps: ## Install dependencies via pipenv
 	pipenv install --dev

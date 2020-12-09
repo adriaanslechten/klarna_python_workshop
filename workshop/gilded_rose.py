@@ -1,4 +1,7 @@
 """Models for items"""
+from typing import List, Optional
+
+from workshop.items.items import Item
 from workshop.libs.item_helpers import (decrease_quality, decrease_sell_in,
                                         increase_quality, item_has_expired)
 
@@ -7,7 +10,7 @@ class Backstage():
     """Model for Backstage items"""
 
     @staticmethod
-    def update_backstage(item):
+    def update_backstage(item: Item) -> int:
         """
         Helper function to update the backstage item
         :param item: containing the backstage pass
@@ -29,7 +32,7 @@ class AgedBrie():
     """Model for Aged bries items"""
 
     @staticmethod
-    def update_aged_brie(item):
+    def update_aged_brie(item: Item) -> int:
         """
         Helper function to update the aged_brie item
         :param item: containing the aged_brie
@@ -46,7 +49,7 @@ class RegularItems():
     """Model for regular items"""
 
     @staticmethod
-    def update_regular_items(item):
+    def update_regular_items(item: Item) -> int:
         """
         Helper function to update the other_items
         :param item: containing the other_items
@@ -61,17 +64,16 @@ class RegularItems():
 
 class GildedRose():
     """Class for Gilded rose"""
-    def __init__(self, items):
+    def __init__(self, items: List[Item]):
         self.items = items
-        self.item = None
 
-    def update_quality(self):
+    def update_quality(self) -> List[Item]:
         """Outer loop for update quality of all the items."""
         for item in self.items:
-            self.item = update_item_quality(item)
+            update_item_quality(item)
         return self.items
 
-def update_item_quality(item):
+def update_item_quality(item: Item) -> Optional[int]:
     """Function to update an individual item's quality."""
     if item.name == "Sulfuras, Hand of Ragnaros":
         return None
