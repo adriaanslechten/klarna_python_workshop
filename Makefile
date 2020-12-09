@@ -26,4 +26,8 @@ test-unit: ## Run unit-tests and pylint
 test-pylint:
 	pylint -f parseable --rcfile=setup.cfg -j 4 --ignore-patterns=".*test_.*.py" workshop
 
+install-deps: ## Install dependencies via pipenv
+	pipenv install --dev
+	pipenv run pip install -e .
+
 .PHONY: help test test-unit test-pylint
