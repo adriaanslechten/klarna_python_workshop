@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a3213623bdefd84035fa5a87e35fb86841761322fd9aa089298da427dd503d21"
+            "sha256": "48a7f427470be01502e34031cc2c3b5c324c232b9f3f97348f80c144db2dd9b1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -230,6 +230,10 @@
                 "sha256:dafc7639cde7f1b6e1acc0f457842a83e722ccca8eef5270af2d74792619a89f"
             ],
             "version": "==3.7.4.3"
+        },
+        "workshop": {
+            "editable": true,
+            "path": "."
         },
         "wrapt": {
             "hashes": [

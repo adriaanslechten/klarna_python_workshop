@@ -36,3 +36,7 @@ for you).
 
 Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a
 legendary item and as such its Quality is 80 and it never alters.
+
+# Setup
+When installing the CLI you need to build a package of your code.
+Do this by running `pipenv install --dev -e .`
