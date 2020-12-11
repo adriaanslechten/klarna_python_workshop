@@ -34,6 +34,8 @@ test-mypy: ## Run mypy
 test-isort: ## Test order of of imports
 	isort -l80 -m3 -tc -rc -c $(PY_MODULE)
 
+black: ## Format all the python code
+	black -l 80 $(PY_MODULE)
 #----------- Pip --------------------------------------------------------------
 install-deps: ## Install dependencies via pipenv
 	pipenv install --dev
@@ -42,4 +44,4 @@ install-deps: ## Install dependencies via pipenv
 isort: ## Sort imports in the python module
 	isort -l80 -m3 $(PY_MODULE)	
 
-.PHONY: help test test-unit test-pylint
+.PHONY: help test test-unit test-pylintgst

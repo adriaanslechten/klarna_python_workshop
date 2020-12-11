@@ -5,8 +5,9 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Item():
+class Item:
     """Class for item"""
+
     name: str
     sell_in: int
     quality: int

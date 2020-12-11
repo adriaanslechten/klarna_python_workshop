@@ -7,12 +7,12 @@ from workshop.libs.item_helpers import (
     decrease_quality,
     decrease_sell_in,
     increase_quality,
-    item_has_expired
+    item_has_expired,
 )
 
 
 @dataclass(frozen=True)
-class Backstage():
+class Backstage:
     """Model for Backstage items"""
 
     @staticmethod
@@ -33,8 +33,9 @@ class Backstage():
             item.quality = item.quality - item.quality
         return item.quality
 
+
 @dataclass(frozen=True)
-class AgedBrie():
+class AgedBrie:
     """Model for Aged bries items"""
 
     @staticmethod
@@ -50,8 +51,9 @@ class AgedBrie():
             item.quality = increase_quality(item)
         return item.quality
 
+
 @dataclass(frozen=True)
-class RegularItems():
+class RegularItems:
     """Model for regular items"""
 
     @staticmethod
@@ -69,8 +71,9 @@ class RegularItems():
 
 
 @dataclass(frozen=True)
-class GildedRose():
+class GildedRose:
     """Class for Gilded rose"""
+
     items: List[Item]
 
     def update_quality(self) -> List[Item]:
@@ -78,6 +81,7 @@ class GildedRose():
         for item in self.items:
             update_item_quality(item)
         return self.items
+
 
 def update_item_quality(item: Item) -> Optional[int]:
     """Function to update an individual item's quality."""
