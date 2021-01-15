@@ -58,7 +58,7 @@ def test_day_one(items_day_zero):
             sell_in=4,
             quality=50,
         ),
-        Item(name="Conjured Mana Cake", sell_in=2, quality=5),
+        Item(name="Conjured Mana Cake", sell_in=2, quality=4),
     ]
 
 
@@ -86,7 +86,7 @@ def test_day_two(items_day_zero):
             sell_in=3,
             quality=50,
         ),
-        Item(name="Conjured Mana Cake", sell_in=1, quality=4),
+        Item(name="Conjured Mana Cake", sell_in=1, quality=2),
     ]
 
 

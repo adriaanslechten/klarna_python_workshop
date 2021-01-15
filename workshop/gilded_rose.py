@@ -3,15 +3,16 @@ class GildedRose(object):
     def __init__(self, items):
         self.items = items
 
-    def decrease_quality(self, item):
+    def decrease_quality(self, item, rate=1):
         """
         Helper function to increase the quality.
         :param item: item which we want tod descrease
+        :param rate: rate we want to descrease the item with
         :return: integer, containing the quality minus one
         """
-        if item.quality > 0:
-            return item.quality - 1
-        return item.quality
+        if item.quality <= 0:
+            return 0
+        return item.quality - rate
 
     def increase_quality(self, item):
         """
@@ -80,6 +81,14 @@ class GildedRose(object):
             item.quality = self.decrease_quality(item)
         return item.quality
 
+    def update_conjured_item(self, item):
+        """Updates a conjured item."""
+        item.quality = self.decrease_quality(item, rate=2)
+        item.sell_in = self.decrease_sell_in(item.sell_in)
+        if self.item_has_expired(item):
+            item.quality = self.decrease_quality(item, rate=2)
+        return item.quality
+
     def update_item_quality(self, item):
         """Function to update an individual item's quality."""
         if item.name == "Sulfuras, Hand of Ragnaros":
@@ -88,6 +97,8 @@ class GildedRose(object):
             return self.update_aged_brie(item)
         elif item.name == "Backstage passes to a TAFKAL80ETC concert":
             return self.update_backstage(item)
+        elif item.name == "Conjured Mana Cake":
+            return self.update_conjured_item(item)
         else:
             return self.update_other_items(item)
 
