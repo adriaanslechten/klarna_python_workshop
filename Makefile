@@ -24,3 +24,7 @@ test-unit:
 
 black: ## Format all the python code
 	black -l 80 $(PY_MODULE)
+
+install-deps: ## Install dependencies via pipenv
+	pipenv install --dev
+	pipenv run pip install -e .
