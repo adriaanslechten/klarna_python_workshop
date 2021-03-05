@@ -1,4 +1,5 @@
-from workshop.gilded_rose import GildedRose, Item
+from workshop.gilded_rose import GildedRose
+from workshop.item import  Item
 import pytest
 
 
