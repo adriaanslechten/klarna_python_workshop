@@ -22,4 +22,5 @@ test-unit:
 	@mkdir -p var
 	pytest test  \
 
-.PHONY: help test test-unit
+black: ## Format all the python code
+	black -l 80 $(PY_MODULE)
